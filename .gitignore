@@ -86,3 +86,23 @@ celerybeat.pid
 # Django debug toolbar and other dev tools
 *.sqlite3
 debug.log
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Python tooling
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.dmypy.json
+dmypy.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+.python-version
+
+# VS Code workspace
+*.code-workspace
