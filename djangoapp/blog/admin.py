@@ -1,6 +1,7 @@
 from django.contrib import admin
 from blog.models import Tag, Category, Page, Post
 from django_summernote.admin import SummernoteModelAdmin
+from django.urls import reverse
 
 
 # Register your models here.
