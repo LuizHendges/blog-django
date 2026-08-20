@@ -35,15 +35,14 @@
         <div class="post-meta-item">
           <a 
             class="post-meta-link" 
-            href="{% url 'blog:created_by' post.created_by.pk  %}"
+            href="{% url "blog:created_by" post.created_by.pk %}"
           >
             <i class="fa-solid fa-user"></i>
             <span>
               {% if post.created_by.first_name %}
-                {{ post.created_by.first_name }} 
-                {{ post.created_by.last_name }}
+                {{ post.created_by.first_name }} {{ post.created_by.last_name }}
               {% else %}
-                {{ post.created_by.username }}
+                Autor
               {% endif %}
             </span>
           </a>
@@ -82,7 +81,7 @@
       <div class="single-post-content">
         {{ post.content | safe  }} 
       
-        {% if post.tags.exists %}
+        {% comment %} {% if post.tags.exists %}
           <div class="post-tags">
             <span>Tags: </span>
 
@@ -93,7 +92,7 @@
               </a>
             {% endfor %}
           </div>
-        {% endif %}
+        {% endif %} {% endcomment %}
         
       </div>
     
