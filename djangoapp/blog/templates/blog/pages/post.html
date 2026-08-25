@@ -81,7 +81,7 @@
       <div class="single-post-content">
         {{ post.content | safe  }} 
       
-        {% comment %} {% if post.tags.exists %}
+        {% if post.tags.exists %}
           <div class="post-tags">
             <span>Tags: </span>
 
@@ -92,7 +92,7 @@
               </a>
             {% endfor %}
           </div>
-        {% endif %} {% endcomment %}
+        {% endif %}
         
       </div>
     
