@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from django.core.paginator import Paginator
+from django.shortcuts import redirect
 from blog.models import Post, Page
 from django.db.models import Q
 from django.contrib.auth.models import User
@@ -102,18 +101,23 @@ class PageDetailView(DetailView):
         return super().get_queryset().filter(is_published=True)
 
 
-def post(request, slug):
-    post_obj = Post.objects.get_published().filter(slug=slug).first()
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/pages/post.html'
+    slug_field = 'slug'
+    context_object_name = 'post'
 
-    if post_obj is None:
-        raise Http404()
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        ctx = super().get_context_data(**kwargs)
+        post = self.get_object()
+        page_title = f'{post.title} - Post - '
+        ctx.update({
+            'page_title': page_title,
+        })
+        return ctx
 
-    page_title = f'{post_obj.title} - Post - '
-
-    return render(
-        request,
-        'blog/pages/post.html', {'post': post_obj, 'page_title': page_title}
-    )
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=True)
 
 
 class TagListView(PostListView):
